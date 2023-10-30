@@ -13,7 +13,7 @@ describe('Page header tests', () => {
   });
 
   test('The header logo should have correct text', async () => {
-    const logoText = await page.$eval('a.brand-logo', el => el.innerHTML);
+    const logoText = await page.getContentsOf('a.brand-logo');
 
     expect(logoText).toEqual('Blogster');
   });
@@ -29,7 +29,7 @@ describe('Page header tests', () => {
   test('Should show a logout button after successful login', async () => {
     await page.login();
 
-    const buttonText = await page.$eval('a[href="/auth/logout"]', el => el.innerHTML);
+    const buttonText = await page.getContentsOf('a[href="/auth/logout"]');
 
     expect(buttonText).toEqual('Logout');
   });
